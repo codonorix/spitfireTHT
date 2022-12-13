@@ -45,11 +45,27 @@ export const AddUser = () => {
 
     const addUser = () => {
         let invalid = false
+        let elements = ['id-issue', 'fname-issue', 'lname-issue', 'email-issue', 'bday-issue']
 
+        for(let id in elements) {
+            console.log(id)
+            document.getElementById(elements[id]).style.display = 'none'
+        }
         if (userObj.idnum.length !== 13) {
             document.getElementById('id-issue').style.display = 'block'
             invalid = true
         }
+
+        if (userObj.fname.length <= 0) {
+            document.getElementById('fname-issue').style.display = 'block'
+            invalid = true
+        }
+
+        if (userObj.lname.length <= 0) {
+            document.getElementById('lname-issue').style.display = 'block'
+            invalid = true
+        }
+
         if(!checkEmail()) {
             document.getElementById('email-issue').style.display = 'block'
             invalid = true
@@ -74,15 +90,16 @@ export const AddUser = () => {
     }
 
     const checkBday = () => {
-        let splitDate = userObj.bday.split("-")
         let newDate = new Date(userObj.bday)
-        console.log(newDate)
+        // console.log()
 
-        if(newDate > new Date())
+        if(newDate > new Date() || isNaN(newDate.valueOf()))
             return false
 
         return true
     }
+
+
     // First Name, Last Name, Email, ID Number and Birthday
     return (
         <Container fluid>
@@ -96,7 +113,13 @@ export const AddUser = () => {
                             You have entered an invalid email.
                         </Alert>
                         <Form.Control type="email" placeholder="email address" onChange={(e) => changeEmail(e)}/><br/>
+                        <Alert key={'FNAME_ISSUE'} variant={'danger'} id={'fname-issue'}>
+                            Please enter a name.
+                        </Alert>
                         <Form.Control type="text" placeholder="First Name" onChange={(e) => changeFname(e)}/><br/>
+                        <Alert key={'LNAME_ISSUE'} variant={'danger'} id={'lname-issue'}>
+                            Please enter a surname.
+                        </Alert>
                         <Form.Control type="text" placeholder="Last Name" onChange={(e) => changeLname(e)}/><br/>
                         <Alert key={'ID_NUM_ISSUE'} variant={'danger'} id={'id-issue'}>
                             Your ID number has to be 13 digits long.

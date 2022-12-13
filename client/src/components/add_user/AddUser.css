@@ -33,6 +33,6 @@
     text-align: center;
 }
 
-#id-issue, #email-issue, #bday-issue {
+#id-issue, #email-issue, #bday-issue, #fname-issue,#lname-issue {
     display: none;
 }
