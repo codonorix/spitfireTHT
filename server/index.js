@@ -25,26 +25,23 @@ app.post('/create_user', async (req, res) => {
     try {
         const apiResponse = await hubspotClient.crm.contacts.basicApi.create(SimplePublicObject)
         console.log(JSON.stringify(res.body, null, 2))
+        res.send(true)
     } catch (e) {
-        e.message === 'HTTP request failed' ? res.send(JSON.stringify(e.response, null, 2)) : res.send(e)
+        res.send(false)
     }
 
-    res.send("Looks like it worked")
 })
 
 app.delete('/delete_user', async (req, res) => {
-    console.log(req.body.id)
     const contactId = req.body.id;
 
     try {
         const apiResponse = await hubspotClient.crm.contacts.basicApi.archive(contactId);
+        res.send(true)
     } catch (e) {
-        e.message === 'HTTP request failed'
-            ? console.error(JSON.stringify(e.response, null, 2))
-            : console.error(e)
+        console.log(e)
+        res.send(false)
     }
-
-    res.send('User deleted.')
 })
 
 /*

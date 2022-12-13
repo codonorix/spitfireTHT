@@ -33,6 +33,6 @@
     text-align: center;
 }
 
-#id-issue, #email-issue, #bday-issue, #fname-issue,#lname-issue {
+#id-issue, #email-issue, #bday-issue, #fname-issue,#lname-issue, #user-added, #create-issue {
     display: none;
 }

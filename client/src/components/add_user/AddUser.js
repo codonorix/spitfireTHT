@@ -45,7 +45,7 @@ export const AddUser = () => {
 
     const addUser = () => {
         let invalid = false
-        let elements = ['id-issue', 'fname-issue', 'lname-issue', 'email-issue', 'bday-issue']
+        let elements = ['id-issue', 'fname-issue', 'lname-issue', 'email-issue', 'bday-issue', 'user-added', 'create-issue']
 
         for(let id in elements) {
             console.log(id)
@@ -80,7 +80,11 @@ export const AddUser = () => {
 
         axios.post('http://localhost:4000/create_user', userObj)
             .then(res => {
-                console.log(res.data)
+                if(res.data) {
+                    document.getElementById('user-added').style.display = 'block'
+                }else{
+                    document.getElementById('create-issue').style.display = 'block'
+                }
             })
     }
 
@@ -108,6 +112,12 @@ export const AddUser = () => {
                 <Col id={'info-side'}>
                     <h2>Add a User</h2>
                     <br/>
+                    <Alert key={'CREATE_ISSUE'} variant={'danger'} id={'create-issue'}>
+                        The user could not be created. Make sure they don't already exist.
+                    </Alert>
+                    <Alert key={'success'} variant={'success'} id={'user-added'}>
+                        User added to Hubspot.
+                    </Alert>
                     <Form id={'forms'}>
                         <Alert key={'EMAIL_ISSUE'} variant={'danger'} id={'email-issue'}>
                             You have entered an invalid email.
