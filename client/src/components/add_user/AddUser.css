@@ -1,0 +1,38 @@
+#color-side {
+    animation: animateBg 60s linear infinite;
+    background-image: linear-gradient(30deg, #cf5c5c, #c19b4a, #def2a0, #c6ee4a, #42eca6, #64b3d9, #208ea2, #498ada, #5b73df, #897ed3, #cf5c5c, #c19b4a);
+    background-size: 100% 1100%;
+    height: 100vh;
+}
+
+@keyframes animateBg {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+#info-side {
+    text-align: center;
+    margin: auto;
+}
+
+#info-side h2 {
+    border-bottom: #de06a0 1px solid;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#forms {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+#id-issue, #email-issue, #bday-issue {
+    display: none;
+}
